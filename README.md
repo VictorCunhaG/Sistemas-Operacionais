@@ -1,4 +1,4 @@
-			                                               Sistemas Operacionais 
+			                                          Sistemas Operacionais 
 
 Turma 04N
 
