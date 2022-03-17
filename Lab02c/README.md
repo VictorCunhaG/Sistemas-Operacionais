@@ -6,7 +6,7 @@
 
 	Nome: Victor Cunha Leite Goulart de Araujo - TIA: 42031729
 	
-	Nome: Pedro Henrique Carvalho
+	Nome: Pedro Henrique Carvalho - TIA: 41910974
 	
 
 ### Execução
