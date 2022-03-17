@@ -1,7 +1,7 @@
-Lab02c - fatorial
+			Lab02c - Fatorial
 
-Grupo:
+	Grupo:
 
-Nome: João Pedro Rodrigues Alves TIA: 42083605
+	Nome: João Pedro Rodrigues Alves TIA: 42083605
 
-Nome: Victor Cunha Leite Goulart de Araujo TIA: 42031729
+	Nome: Victor Cunha Leite Goulart de Araujo TIA: 42031729
