@@ -27,9 +27,9 @@
 #define FOME 1
 #define COMER 2
 // funcao para pegar garfo a esquerda
-#define ESQUERDA (nfilosofo+4)%N
+#define ESQUERDA (nfilosofo + 4)%N
 // funcao para pegar garfo a direita
-#define DIREITA (nfilosofo+1)%N
+#define DIREITA (nfilosofo + 1)%N
 
 // prototipacao
 void *filosofo(void *num);
