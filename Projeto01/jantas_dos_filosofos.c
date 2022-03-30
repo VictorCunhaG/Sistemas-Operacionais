@@ -3,9 +3,9 @@
  Sistemas Operacionais
  Prof. Eduardo Ferreira dos Santos
  Projeto 01 - Jantar dos Filosofos
- Solução que impede a starvation dos filosofos
+ SoluÃ§Ã£o que impede a starvation dos filosofos
 ************************************************
- Nome:  João Pedro Rodrigues Alves
+ Nome:  JoÃ£o Pedro Rodrigues Alves
  TIA:   42083605
 
  Nome:  Pedro Henrique Carvalho
@@ -37,15 +37,15 @@ void pegarGarfo(int);
 void deixaGarfo(int);
 void testar(int);
 
-// semáforo
+// semÃ¡foro
 sem_t mutex;
 
-// inicializacao do semáforo
+// inicializacao do semÃ¡foro
 sem_t S[N];
 
 // seta o estado e os filosofos
 int estado[N];
-int nfilosofo[N]={0,1,2,3,4};
+int nfilosofo[N]={0, 1, 2, 3, 4};
 
 // funcao dos filosofos
 void *filosofo(void *num)
@@ -64,14 +64,14 @@ void *filosofo(void *num)
 // funcao para pegar os garfos
 void pegarGarfo(int nfilosofo)
 {
-   // trava o semáforo
+   // trava o semÃ¡foro
    sem_wait(&mutex);
    // seta o estado do filosofo n para: com fome
    estado[nfilosofo] = FOME;
-   printf("Filosofo %d tem fome.\n", nfilosofo+1);
+   printf("Filosofo %d tem fome.\n", nfilosofo + 1);
    // verifica se algum filosofo ao lado esta comendo
    testar(nfilosofo);
-   // desbloqueia o semáforo
+   // desbloqueia o semÃ¡foro
    sem_post(&mutex);
    // trava os outros filosofos
    sem_wait(&S[nfilosofo]);
@@ -81,30 +81,29 @@ void pegarGarfo(int nfilosofo)
 // funcao para deixar os garfos
 void deixaGarfo(int nfilosofo)
 {
-   // trava o semáforo
+   // trava o semÃ¡foro
    sem_wait(&mutex);
    // seta o estado do filosofo n para: pensando
-   estado[nfilosofo]=PENSAR;
-   printf("Filosofo %d deixou os garfos %d e %d.\n", nfilosofo+1, ESQUERDA+1, nfilosofo+1);
-   printf("Filosofo %d esta pensando.\n", nfilosofo+1);
+   estado[nfilosofo] = PENSAR;
+   printf("Filosofo %d deixou os garfos %d e %d.\n", nfilosofo + 1, ESQUERDA + 1, nfilosofo + 1);
+   printf("Filosofo %d esta pensando.\n", nfilosofo + 1);
    // testa se o filosofo a direita e a esquerda esta comendo
    testar(ESQUERDA);
    testar(DIREITA);
-   // desbloqueia o semáforo
+   // desbloqueia o semÃ¡foro
    sem_post(&mutex);
 }
 
 // verifica os estados dos filosofos ao lado
 void testar(int nfilosofo)
 {
-   if(estado[nfilosofo]==FOME && estado[ESQUERDA]
- !=COMER && estado[DIREITA]!=COMER)
+   if(estado[nfilosofo] == FOME && estado[ESQUERDA] != COMER && estado[DIREITA] != COMER)
    {
       // seta o estado do filosofo n para: com fome
-      estado[nfilosofo]=COMER;
+      estado[nfilosofo] = COMER;
       sleep(2);
-      printf("Filosofo %d pegou os garfos %d e %d.\n", nfilosofo+1, ESQUERDA+1, nfilosofo+1);
-      printf("Filosofo %d esta comendo.\n", nfilosofo+1);
+      printf("Filosofo %d pegou os garfos %d e %d.\n", nfilosofo + 1, ESQUERDA + 1, nfilosofo + 1);
+      printf("Filosofo %d esta comendo.\n", nfilosofo + 1);
       // desbloqueia os filosofos
       sem_post(&S[nfilosofo]);
    }
@@ -117,18 +116,18 @@ int main() {
    // identificadores das threads
    pthread_t thread_id[N];
    // inicializa o semaforo sincronizado e compartilhado entre threads
-   sem_init(&mutex,0,1);
-   for(i=0;i<N;i++)
-      sem_init(&S[i],0,0); // inicializa o semaforo S sincronizado e compartilhado entre threads
-   for(i=0;i<N;i++)
+   sem_init(&mutex, 0, 1);
+   for(i = 0; i < N; i++)
+      sem_init(&S[i], 0, 0); // inicializa o semaforo S sincronizado e compartilhado entre threads
+   for(i = 0; i < N; i++)
    {
       // criacao das threads
       pthread_create(&thread_id[i], NULL, filosofo, &nfilosofo[i]);
-      printf("Filosofo %d esta pensando.\n",i+1);
+      printf("Filosofo %d esta pensando.\n", i + 1);
    }
    // juncao das threads
-   for(i=0;i<N;i++)
-   pthread_join(thread_id[i],NULL);
+   for(i = 0; i < N; i++)
+   pthread_join(thread_id[i], NULL);
 
    return(0);
 }
