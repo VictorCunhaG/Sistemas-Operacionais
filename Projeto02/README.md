@@ -10,7 +10,7 @@ Nome: Pedro Henrique Carvalho 			- TIA: 41910974
 Nome: Victor Cunha Leite Goulart de Araujo	- TIA: 42031729
 
 
-**Using Synchronizations and Atomic Operations
+** Using Synchronizations and Atomic Operations
 
 1. A conta to pode receber mais de uma transferência simultânea;
 
