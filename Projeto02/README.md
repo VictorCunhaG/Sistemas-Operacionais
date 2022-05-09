@@ -12,6 +12,8 @@ Nome: Victor Cunha Leite Goulart de Araujo	- TIA: 42031729
 
 **Using Synchronizations and Atomic Operations**
 
+https://www.cs.yale.edu/homes/aspnes/classes/223/examples/linkedLists/queue.c
+
 1. A conta to pode receber mais de uma transferência simultânea;
 
 2. A conta from pode enviar mais de uma transferência simultânea;
