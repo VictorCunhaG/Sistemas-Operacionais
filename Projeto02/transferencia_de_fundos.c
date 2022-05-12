@@ -6,13 +6,17 @@
 #include <signal.h>
 #include <sched.h>
 #include <stdio.h>
+#include <pthread.h>
 
 // 64kB stack
 #define FIBER_STACK 1024*64
+pthread_mutex_t trava_mutex;
 
 struct c {
+    
     int saldo;
 };
+
 
 typedef struct c conta;
 
@@ -21,10 +25,14 @@ int valor;
 
 // THe child will execute this funcition
 int transferencia(void *arg){
-
+    
     if(from.saldo >= valor){
+        pthread_mutex_lock(&trava_mutex);
         from.saldo -= valor;
+        pthread_mutex_unlock(&trava_mutex);
+        pthread_mutex_lock(&trava_mutex);
         to.saldo += valor;
+        pthread_mutex_unlock(&trava_mutex);
     }
     printf("Transferencia concluida com sucesso!\n");
     printf("Saldo de c1: %d\n", from.saldo);
@@ -46,7 +54,7 @@ int main(){
         exit(1);
     }
 
-    // Todas as contas começam com saldo 100
+    // Todas as contas comeï¿½am com saldo 100
     from.saldo = 100;
     to.saldo = 100;
 
@@ -61,6 +69,7 @@ int main(){
             perror( "clone" );
             exit(2);
         }
+      
     }
 
     // Free the stack
