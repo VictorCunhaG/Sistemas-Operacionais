@@ -7,10 +7,12 @@
 #include <sched.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <semaphore.h>
 
 // 64kB stack
 #define FIBER_STACK 1024*64
 pthread_mutex_t trava_mutex;
+sem_t (&trava_mutex);
 
 struct c {
     
@@ -25,15 +27,12 @@ int valor;
 
 // THe child will execute this funcition
 int transferencia(void *arg){
-    
+    sem_wait(&trava_mutex);
     if(from.saldo >= valor){
-        pthread_mutex_lock(&trava_mutex);
         from.saldo -= valor;
-        pthread_mutex_unlock(&trava_mutex);
-        pthread_mutex_lock(&trava_mutex);
-        to.saldo += valor;
-        pthread_mutex_unlock(&trava_mutex);
+        to.saldo += valor;       
     }
+    sem_post(&trava_mutex);
     printf("Transferencia concluida com sucesso!\n");
     printf("Saldo de c1: %d\n", from.saldo);
     printf("Saldo de c2: %d\n", to.saldo);
@@ -45,6 +44,7 @@ int main(){
     void* stack;
     pid_t pid;
     int i;
+    sem_init(&trava_mutex);
 
     // Allocate the stack
     stack = malloc ( FIBER_STACK );
@@ -71,7 +71,7 @@ int main(){
         }
       
     }
-
+    sem_wait(NULL);
     // Free the stack
     free( stack );
     printf("Transferencias concluidas e memoria liberada.\n");
