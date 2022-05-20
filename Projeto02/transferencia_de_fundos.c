@@ -11,7 +11,6 @@
 
 // 64kB stack
 #define FIBER_STACK 1024*64
-pthread_mutex_t trava_mutex;
 sem_t (&trava_mutex);
 
 struct c {
@@ -71,7 +70,7 @@ int main(){
         }
       
     }
-    sem_wait(NULL);
+    wait(NULL);
     // Free the stack
     free( stack );
     printf("Transferencias concluidas e memoria liberada.\n");
