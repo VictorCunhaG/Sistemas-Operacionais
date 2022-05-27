@@ -16,12 +16,10 @@ struct c {
     int saldo;
 };
 
-
 typedef struct c conta;
 
 conta from, to;
 int valor;
-
 
 
 // THe child will execute this funcition
@@ -31,6 +29,12 @@ int transferencia(void *arg){
         sem_wait(&trava_mutex);
         from.saldo -= valor;
         to.saldo += valor;
+        sem_post(&trava_mutex);
+    }
+    else if(to.saldo >= valor){
+        sem_wait(&trava_mutex);
+        to.saldo -= valor;
+        from.saldo += valor;
         sem_post(&trava_mutex);
     }
     printf("Transferencia concluida com sucesso!\n");
@@ -56,15 +60,14 @@ int main(){
     }
 
     // Todas as contas come�am com saldo 100
-    from.saldo = 1000000;
+    from.saldo = 980;
     to.saldo = 100;
 
     printf( " Transferindo 10 para a conta c2\n" );
     valor = 10;
 
         
-  
-    for (i=0; i<100000; i++){
+    for (i=0; i<100; i++){
         // Call the clone system call to recreate the child thread
         thread_pid[i] = clone( &transferencia, (char*) stack + FIBER_STACK, SIGCHLD | CLONE_FS | CLONE_FILES | CLONE_SIGHAND | CLONE_VM, 0 );
   
