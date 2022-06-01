@@ -67,7 +67,7 @@ int main(){
     valor = 10;
 
         
-    for (i=0; i<101; i++){
+    for (i=0; i<100; i++){
         // Call the clone system call to recreate the child thread
         thread_pid[i] = clone( &transferencia, (char*) stack + FIBER_STACK, SIGCHLD | CLONE_FS | CLONE_FILES | CLONE_SIGHAND | CLONE_VM, 0 );
   
