@@ -36,7 +36,7 @@ Output do Código
 	4. A conta to pode trocar de ordem com a conta from, ou seja, a conta que enviava pode
 	receber e a conta que recebia pode enviar;
     
-![from no lugar do to](https://i.imgur.com/88RIlm6.png)
+![from no lugar do to](https://i.imgur.com/LjDA4Vj.png)
 
     Vemos que mesmo mudando a posição do from e do to temos o mesmo resultado, 
     as contas continuam fazendo oq deveriam fazer
