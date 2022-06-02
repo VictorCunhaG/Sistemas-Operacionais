@@ -56,5 +56,5 @@ Output do Código
 	Bibliografia:
 	https://www.baeldung.com/cs/race-conditions#:~:text=To%20avoid%20race%20conditions%2C%20any,exclusive%20parts%20of%20the%20program.
 	https://stackoverflow.com/questions/34524/what-is-a-mutex
-    https://pubs.opengroup.org/onlinepubs/7908799/xsh/semaphore.h.html
+    	https://pubs.opengroup.org/onlinepubs/7908799/xsh/semaphore.h.html
 	https://stackoverflow.com/questions/20596922/how-to-wait-for-threads-to-finish-their-work-where-threads-created-by-clone-in
